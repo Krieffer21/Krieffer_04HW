@@ -6,23 +6,23 @@ var body = document.querySelector("body");
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
           a: ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"],
-          c: 3 },
+          c: "var x = {name:Billy};" },
     
         { q: "How would you call the following function. function example() { alert(\“Pick me!\”); }",
           a: ["(Pick Me!)", "alert(Pick me!);", "example();", "Return function();"],
-          c: 2},
+          c: "example();" },
     
         { q: "Which of the following is an example of an array?",
           a: ["var cat = [\“cute\”, \“furry\”, \“sleepy\”];", "var cat = true;", "var cat = (cute, furry, sleepy);", "var cat = \“cute\”, \“furry\”, \“sleepy\”;"],
-          c: 0},
+          c: "var cat = [\“cute\”, \“furry\”, \“sleepy\”];"},
     
         { q: "math.random(); is used for which of the following?",
           a: ["Does math", "Returns a random number", "Nothing", "Makes me happy"],
-          c: 1},
+          c: "Returns a random number" },
     
         { q: "A variable declared in the overall script outside of any  function is?",
           a: ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"],
-          c: 3}
+          c: "A Global variable" }
     ];
 
 var header = document.createElement("header");
@@ -39,25 +39,41 @@ body.appendChild(start);
 
 start.addEventListener("click", function() {
     // when clicked start quiz & timer
-    askQuestion(q1,a1);
+    askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
     setTime(); 
 });
 
-var trackingQuestion
+var currentQ = 0;
 
 answer1.addEventListener("click", function() {
-    if (answer1.textContent === a1[3]) {
-        askQuestion(q2,a2);
+    if (answer1.textContent === questionsAnswers[currentQ].c ) {
+        currentQ++;
+        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
     }
     else {secondsLeft--;}
 });
 answer2.addEventListener("click", function() {
+    if (answer2.textContent === questionsAnswers[currentQ].c ) {
+        currentQ++;
+        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+    }
+    else {secondsLeft--;}
 
 });
 answer3.addEventListener("click", function() {
+    if (answer3.textContent === questionsAnswers[currentQ].c ) {
+        currentQ++;
+        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+    }
+    else {secondsLeft--;}
 
 });
 answer4.addEventListener("click", function() {
+    if (answer4.textContent === questionsAnswers[currentQ].c ) {
+        currentQ++;
+        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+    }
+    else {secondsLeft--;}
 
 });
 
