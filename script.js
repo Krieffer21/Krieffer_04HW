@@ -2,16 +2,28 @@ var timer = document.querySelector("#timer");
 timer.textContent = "Timer: 100"; 
 var highScore = document.querySelector(".score");
 var body = document.querySelector("body");
-    var q1 = "Which of the following data types represents an object?" ;
-    var a1 = ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"];
-    var q2 = "How would you call the following function. function example() { Alert (\“Pick me!\”); }";
-    var a2 = ["(Pick Me!)", "Alert (Pick me!);", "example();", "Return function ();"];
-    var q3 = "Which of the following is an example of an array?"
-    var a3 = ["var cat = [\“cute\”, \“furry\”, \“sleepy\”];", "var cat = true;", "var cat = (cute, furry, sleepy);", "var cat = \“cute\”, \“furry\”, \“sleepy\”;"];
-    var q4 = "Math.random(); is used for which of the following?";
-    var a4 = ["Does math", "Returns a random number", "Nothing", "Makes me happy"];
-    var q5 = "A variable declared in the overall script outside of any function is?";
-    var a5 = ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"];
+
+    var questionsAnswers = [
+        { q: "Which of the following data types represents an object?", 
+          a: ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"],
+          c: 3 },
+    
+        { q: "How would you call the following function. function example() { alert(\“Pick me!\”); }",
+          a: ["(Pick Me!)", "alert(Pick me!);", "example();", "Return function();"],
+          c: 2},
+    
+        { q: "Which of the following is an example of an array?",
+          a: ["var cat = [\“cute\”, \“furry\”, \“sleepy\”];", "var cat = true;", "var cat = (cute, furry, sleepy);", "var cat = \“cute\”, \“furry\”, \“sleepy\”;"],
+          c: 0},
+    
+        { q: "math.random(); is used for which of the following?",
+          a: ["Does math", "Returns a random number", "Nothing", "Makes me happy"],
+          c: 1},
+    
+        { q: "A variable declared in the overall script outside of any  function is?",
+          a: ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"],
+          c: 3}
+    ];
 
 var header = document.createElement("header");
 header.textContent = "Coding Quiz!";
@@ -26,9 +38,28 @@ start.textContent = "Start Quiz";
 body.appendChild(start);
 
 start.addEventListener("click", function() {
-    event.preventDefault();
-    // when clicked start quiz
-})
+    // when clicked start quiz & timer
+    askQuestion(q1,a1);
+    setTime(); 
+});
+
+var trackingQuestion
+
+answer1.addEventListener("click", function() {
+    if (answer1.textContent === a1[3]) {
+        askQuestion(q2,a2);
+    }
+    else {secondsLeft--;}
+});
+answer2.addEventListener("click", function() {
+
+});
+answer3.addEventListener("click", function() {
+
+});
+answer4.addEventListener("click", function() {
+
+});
 
 
 
