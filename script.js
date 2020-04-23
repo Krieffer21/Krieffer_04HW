@@ -2,7 +2,7 @@ var timer = document.querySelector("#timer");
 timer.textContent = "Timer: 100"; 
 var highScore = document.querySelector(".score");
 var body = document.querySelector("body");
-    // Defining the quiz questions answers and correct answers.  
+    // Defining the quiz questions, answers and correct answers.  
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
           a: ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"],
@@ -24,21 +24,25 @@ var body = document.querySelector("body");
           a: ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"],
           c: "A Global variable" }
     ];
-
+// Header for the starting page
 var header = document.createElement("header");
 header.textContent = "Coding Quiz!";
 body.appendChild(header);
 
+// Starting prompt for quiz
 var intro = document.createElement("p");
 intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
 body.appendChild(intro);
 
+// Assigning start quiz text to the start button.
 var start = document.querySelector ("button");
 start.textContent = "Start Quiz";
+// Inserting the button into the HTML file.
 body.appendChild(start);
 
+// when clicked start quiz & timer
 start.addEventListener("click", function() {
-    // when clicked start quiz & timer
+    // Display the first question and answer options.
     askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
     setTime(); 
     // no longer display start message and button when taking quiz
@@ -46,13 +50,15 @@ start.addEventListener("click", function() {
     intro.remove();
 });
 
-
+// Displays the time on the timer and counts down.
 function updateTimer() {
     secondsLeft--;
     timer.textContent= "Timer: " + secondsLeft;
-
+    // When the timer reaches 0 end the game. 
     if (secondsLeft == 0) {
-        // Does stuff when game is done
+        // call function endGame()
+        // function endGame();
+
     }
 }
 
@@ -120,6 +126,21 @@ function askQuestion(q,a) {
     answer2.textContent = a[1];
     answer3.textContent = a[2];
     answer4.textContent = a[3];
+}
+
+function endGame() {
+    var end = document.createElement("h1");
+    end.textContent="All done!";
+    body.appendChild(end);
+
+    var giveScore = document.createElement("h1");
+    giveScore.textContent="Your final score is " + " secondsLeft";
+    body.appendChild(giveScore);
+
+    var submitHighScore = document.querySelector ("button");
+    submitHighScore.textContent = "submit";
+    body.appendChild(submitHighScore);
+
 }
 
 
