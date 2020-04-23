@@ -45,9 +45,10 @@ start.addEventListener("click", function() {
     // Display the first question and answer options.
     askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
     setTime(); 
-    // no longer display start message and button when taking quiz
+    // no longer display start messages and button when taking quiz
     start.remove();
     intro.remove();
+    header.remove();
 });
 
 // Displays the time on the timer and counts down.
@@ -57,17 +58,19 @@ function updateTimer() {
     // When the timer reaches 0 end the game. 
     if (secondsLeft == 0) {
         // call function endGame()
-        // function endGame();
-
+        endGame();
     }
 }
 
+// Defining the timer start time. 
 var secondsLeft = 100;
 var timerInterval;
+// Setting the starting time.
 function setTime() {
   timerInterval = setInterval(updateTimer, 1000);
 }
 
+//  Global question and answer variables. 
 var currentQ = 0;
 var question; 
 var answer1;
@@ -75,6 +78,7 @@ var answer2;
 var answer3;
 var answer4;
 
+// The following function asks the questions and diplays the answers as buttons.
 function askQuestion(q,a) {
     if (question == undefined){
         question = document.createElement("h1");
@@ -86,41 +90,60 @@ function askQuestion(q,a) {
         answer3 = document.createElement("button");
         body.appendChild(answer3);
         answer4 = document.createElement("button");
-        body.appendChild(answer4);  
+        body.appendChild(answer4);
 
+        // When an answer button is clicked on check that it was the correct answer.
         answer1.addEventListener("click", function() {
+            // Check the current question was answered correctly.
             if (answer1.textContent === questionsAnswers[currentQ].c ) {
-                currentQ++;
-                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+                // Check if the was the last question if so,
+                if (currentQ==4) {
+                    // run endGame function.
+                    endGame();
+                }
+                // If this wasn't the last question, go to the next question.
+                else {
+                    currentQ++;
+                    askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
+            // If the answer is wrong deduct time from secondsLeft.
             else {secondsLeft--;}
         });
         answer2.addEventListener("click", function() {
             if (answer2.textContent === questionsAnswers[currentQ].c ) {
-                currentQ++;
-                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+                if (currentQ==4) {
+                    endGame();
+                }
+                else {
+                    currentQ++;
+                    askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
             else {secondsLeft--;}
-        
         });
         answer3.addEventListener("click", function() {
             if (answer3.textContent === questionsAnswers[currentQ].c ) {
-                currentQ++;
-                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+                if (currentQ==4) {
+                    endGame();
+                }
+                else {
+                    currentQ++;
+                    askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
             else {secondsLeft--;}
-        
         });
         answer4.addEventListener("click", function() {
             if (answer4.textContent === questionsAnswers[currentQ].c ) {
-                currentQ++;
-                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+                if (currentQ==4) {
+                    endGame();
+                }
+                else {
+                    currentQ++;
+                    askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
             else {secondsLeft--;}
-        
         });
-        
     }
+    // This writes the question and answers in text and assigns the answer an index number. 
     question.textContent = q;
     answer1.textContent = a[0];
     answer2.textContent = a[1];
@@ -128,20 +151,43 @@ function askQuestion(q,a) {
     answer4.textContent = a[3];
 }
 
-function endGame() {
+// The function endGame lets the user know the game is over and to submit their score.
+function endGame() { 
+    clearInterval(timerInterval);
+
+    question.remove();
+    answer1.remove();
+    answer2.remove();
+    answer3.remove();
+    answer4.remove();
+
+    // Adding the header1 to the HTML, 'All done!'.
     var end = document.createElement("h1");
     end.textContent="All done!";
     body.appendChild(end);
 
+    // Shows the player their final score as the time they had left, if any. 
     var giveScore = document.createElement("h1");
-    giveScore.textContent="Your final score is " + " secondsLeft";
+    giveScore.textContent = "Your final score is " + secondsLeft;
     body.appendChild(giveScore);
 
-    var submitHighScore = document.querySelector ("button");
+    var enterInitials = document.createElement("form");
+    body.appendChild(enterIntials);
+
+    var textBox = document.createElement("input");
+    textBox.setAttribute("type", "text");
+    textBox.setAttribute("name", "initials");
+    enterInitials.appendChild(textBox);
+
+    var submitHighScore = document.createElement("button");
     submitHighScore.textContent = "submit";
-    body.appendChild(submitHighScore);
+    enterInitials.appendChild(submitHighScore);
+    }
 
-}
-
-
+    submitHighScore.addEventListener("click", function() {
+            if (enterInitials == "") {
+            return false;
+             alert ("Invalid response! Please enter your initials.");
+        }
+})
 
