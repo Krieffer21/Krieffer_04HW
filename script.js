@@ -2,7 +2,7 @@ var timer = document.querySelector("#timer");
 timer.textContent = "Timer: 100"; 
 var highScore = document.querySelector(".score");
 var body = document.querySelector("body");
-
+    // Defining the quiz questions answers and correct answers.  
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
           a: ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"],
@@ -41,47 +41,19 @@ start.addEventListener("click", function() {
     // when clicked start quiz & timer
     askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
     setTime(); 
+    // no longer display start message and button when taking quiz
+    start.remove();
+    intro.remove();
 });
-
-var currentQ = 0;
-
-answer1.addEventListener("click", function() {
-    if (answer1.textContent === questionsAnswers[currentQ].c ) {
-        currentQ++;
-        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
-    }
-    else {secondsLeft--;}
-});
-answer2.addEventListener("click", function() {
-    if (answer2.textContent === questionsAnswers[currentQ].c ) {
-        currentQ++;
-        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
-    }
-    else {secondsLeft--;}
-
-});
-answer3.addEventListener("click", function() {
-    if (answer3.textContent === questionsAnswers[currentQ].c ) {
-        currentQ++;
-        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
-    }
-    else {secondsLeft--;}
-
-});
-answer4.addEventListener("click", function() {
-    if (answer4.textContent === questionsAnswers[currentQ].c ) {
-        currentQ++;
-        askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
-    }
-    else {secondsLeft--;}
-
-});
-
 
 
 function updateTimer() {
     secondsLeft--;
     timer.textContent= "Timer: " + secondsLeft;
+
+    if (secondsLeft == 0) {
+        // Does stuff when game is done
+    }
 }
 
 var secondsLeft = 100;
@@ -90,6 +62,7 @@ function setTime() {
   timerInterval = setInterval(updateTimer, 1000);
 }
 
+var currentQ = 0;
 var question; 
 var answer1;
 var answer2;
@@ -107,7 +80,40 @@ function askQuestion(q,a) {
         answer3 = document.createElement("button");
         body.appendChild(answer3);
         answer4 = document.createElement("button");
-        body.appendChild(answer4);   
+        body.appendChild(answer4);  
+
+        answer1.addEventListener("click", function() {
+            if (answer1.textContent === questionsAnswers[currentQ].c ) {
+                currentQ++;
+                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+            }
+            else {secondsLeft--;}
+        });
+        answer2.addEventListener("click", function() {
+            if (answer2.textContent === questionsAnswers[currentQ].c ) {
+                currentQ++;
+                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+            }
+            else {secondsLeft--;}
+        
+        });
+        answer3.addEventListener("click", function() {
+            if (answer3.textContent === questionsAnswers[currentQ].c ) {
+                currentQ++;
+                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+            }
+            else {secondsLeft--;}
+        
+        });
+        answer4.addEventListener("click", function() {
+            if (answer4.textContent === questionsAnswers[currentQ].c ) {
+                currentQ++;
+                askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);
+            }
+            else {secondsLeft--;}
+        
+        });
+        
     }
     question.textContent = q;
     answer1.textContent = a[0];
