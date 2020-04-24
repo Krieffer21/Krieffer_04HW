@@ -1,9 +1,8 @@
-var timer = document.querySelector("#timer");
-timer.textContent = "Timer: 100"; 
-var highScore = document.querySelector(".score");
+var timer = document.createElement("div");
 var body = document.querySelector("body");
 var scoreList = [];
 
+letsGo();
     // Defining the quiz questions, answers and correct answers.  
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
@@ -26,32 +25,53 @@ var scoreList = [];
           a: ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"],
           c: "A Global variable" }
     ];
-// Header for the starting page
-var header = document.createElement("header");
-header.textContent = "Coding Quiz!";
-body.appendChild(header);
+    function letsGo() {
 
-// Starting prompt for quiz
-var intro = document.createElement("p");
-intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
-body.appendChild(intro);
+        var highScore = document.createElement("button");
+        highScore.textContent = "High Scores!";
+        body.appendChild(highScore);
 
-// Assigning start quiz text to the start button.
-var start = document.createElement ("button");
-start.textContent = "Start Quiz";
-// Inserting the button into the HTML file.
-body.appendChild(start);
+        timer.textContent = "Timer: 100"; 
+        body.appendChild(timer);
 
-// when clicked start quiz & timer
-start.addEventListener("click", function() {
-    // Display the first question and answer options.
-    askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
-    setTime(); 
-    // no longer display start messages and button when taking quiz
-    start.remove();
-    intro.remove();
-    header.remove();
-});
+        // Header for the starting page
+        var header = document.createElement("header");
+        header.textContent = "Coding Quiz!";
+        body.appendChild(header);
+
+        // Starting prompt for quiz
+        var intro = document.createElement("p");
+        intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
+        body.appendChild(intro);
+
+        // Assigning start quiz text to the start button.
+        var start = document.createElement ("button");
+        start.textContent = "Start Quiz";
+        // Inserting the button into the HTML file.
+        body.appendChild(start);
+
+        // when clicked start quiz & timer
+        start.addEventListener("click", function() {
+            // Display the first question and answer options.
+            question = undefined;
+            currentQ = 0;
+            askQuestion(questionsAnswers[0].q, questionsAnswers[0].a);
+
+            setTime(); 
+            // no longer display start messages and button when taking quiz
+            start.remove();
+            intro.remove();
+            header.remove();
+            highScore.remove();
+        });
+        highScore.addEventListener("click", function(){
+            start.remove();
+            intro.remove();
+            header.remove();
+            highScore.remove();
+            scorePage();
+        });    
+}
 
 // Displays the time on the timer and counts down.
 function updateTimer() {
@@ -196,6 +216,11 @@ function endGame() {
             else {
                 scoreList.push({
                     initials:textBox.value, score:secondsLeft});
+                end.remove();
+                giveScore.remove();
+                initials.remove();
+                textBox.remove();
+                submitHighScore.remove();
                 scorePage();
             }
     });
@@ -207,12 +232,13 @@ function scorePage() {
     highHeader.textContent = "High Scores!";
     body.appendChild(highHeader);
 
+
     var scores = document.createElement("ol");
     body.appendChild(scores);
     for (var i = 0; i < scoreList.length; i++) {  
         var list = document.createElement("li");
         list.textContent = scoreList[i].initials + " - " + scoreList[i].score;
-        scores.appendChild(list);      
+        scores.appendChild(list);   
     }
 
     var clearScores = document.createElement("button");
@@ -225,10 +251,13 @@ function scorePage() {
     body.appendChild(goBack);
 
 // refreshes the page but doesn't delete the local storage. 
-    goBack.addEventListener("click",function(){
-        location.reload(false);
+    goBack.addEventListener("click",function() {
+        highHeader.remove();
+        scores.remove();
+        clearScores.remove();
+        goBack.remove();
+        letsGo();
     });
 }
-highScore.addEventListener("click", scorePage);
 
 
