@@ -2,6 +2,7 @@ var timer = document.querySelector("#timer");
 timer.textContent = "Timer: 100"; 
 var highScore = document.querySelector(".score");
 var body = document.querySelector("body");
+var scoreList = [];
 
     // Defining the quiz questions, answers and correct answers.  
     var questionsAnswers = [
@@ -193,22 +194,35 @@ function endGame() {
                 alert ("Invalid response! Please enter your initials in the box below.");
             }
             else {
+                scoreList.push({
+                    initials:textBox.value, score:secondsLeft});
                 scorePage();
             }
     });
 }
 
 function scorePage() {
+
     var highHeader = document.createElement("header");
     highHeader.textContent = "High Scores!";
     body.appendChild(highHeader);
 
+    var scores = document.createElement("ol");
+    body.appendChild(scores);
+    for (var i = 0; i < scoreList.length; i++) {  
+        var list = document.createElement("li");
+        list.textContent = scoreList[i].initials + " - " + scoreList[i].score;
+        scores.appendChild(list);      
+    }
 
+    var clearScores = document.createElement("button");
+    clearScores.textContent = "Clear High Scores";
+    body.appendChild(clearScores);
+        // clear scores 
 
     var goBack = document.createElement("button");
     goBack.textContent = "Go Back!";
     body.appendChild(goBack);
-
 
 // refreshes the page but doesn't delete the local storage. 
     goBack.addEventListener("click",function(){
