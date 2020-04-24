@@ -2,6 +2,7 @@ var timer = document.querySelector("#timer");
 timer.textContent = "Timer: 100"; 
 var highScore = document.querySelector(".score");
 var body = document.querySelector("body");
+
     // Defining the quiz questions, answers and correct answers.  
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
@@ -35,7 +36,7 @@ intro.textContent = "Please answer the following code related questions before t
 body.appendChild(intro);
 
 // Assigning start quiz text to the start button.
-var start = document.querySelector ("button");
+var start = document.createElement ("button");
 start.textContent = "Start Quiz";
 // Inserting the button into the HTML file.
 body.appendChild(start);
@@ -191,6 +192,29 @@ function endGame() {
             if (textBox.value == "") {
                 alert ("Invalid response! Please enter your initials in the box below.");
             }
+            else {
+                scorePage();
+            }
     });
 }
+
+function scorePage() {
+    var highHeader = document.createElement("header");
+    highHeader.textContent = "High Scores!";
+    body.appendChild(highHeader);
+
+
+
+    var goBack = document.createElement("button");
+    goBack.textContent = "Go Back!";
+    body.appendChild(goBack);
+
+
+// refreshes the page but doesn't delete the local storage. 
+    goBack.addEventListener("click",function(){
+        location.reload(false);
+    });
+}
+highScore.addEventListener("click", scorePage);
+
 
