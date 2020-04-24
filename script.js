@@ -56,7 +56,7 @@ function updateTimer() {
     secondsLeft--;
     timer.textContent= "Timer: " + secondsLeft;
     // When the timer reaches 0 end the game. 
-    if (secondsLeft == 0) {
+    if (secondsLeft <= 0) {
         // call function endGame()
         endGame();
     }
@@ -107,7 +107,7 @@ function askQuestion(q,a) {
                     askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
             // If the answer is wrong deduct time from secondsLeft.
-            else {secondsLeft--;}
+            else {secondsLeft = secondsLeft - 10;}
         });
         answer2.addEventListener("click", function() {
             if (answer2.textContent === questionsAnswers[currentQ].c ) {
@@ -118,7 +118,7 @@ function askQuestion(q,a) {
                     currentQ++;
                     askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
-            else {secondsLeft--;}
+            else {secondsLeft = secondsLeft - 10;}
         });
         answer3.addEventListener("click", function() {
             if (answer3.textContent === questionsAnswers[currentQ].c ) {
@@ -129,7 +129,7 @@ function askQuestion(q,a) {
                     currentQ++;
                     askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
-            else {secondsLeft--;}
+            else {secondsLeft = secondsLeft - 10;}
         });
         answer4.addEventListener("click", function() {
             if (answer4.textContent === questionsAnswers[currentQ].c ) {
@@ -140,7 +140,7 @@ function askQuestion(q,a) {
                     currentQ++;
                     askQuestion(questionsAnswers[currentQ].q, questionsAnswers[currentQ].a);}  
             }
-            else {secondsLeft--;}
+            else {secondsLeft = secondsLeft - 10;}
         });
     }
     // This writes the question and answers in text and assigns the answer an index number. 
@@ -168,26 +168,29 @@ function endGame() {
 
     // Shows the player their final score as the time they had left, if any. 
     var giveScore = document.createElement("h1");
+    if (secondsLeft < 0) {
+        secondsLeft = 0;
+    }
     giveScore.textContent = "Your final score is " + secondsLeft;
     body.appendChild(giveScore);
 
-    var enterInitials = document.createElement("form");
-    body.appendChild(enterIntials);
+    var initials = document.createElement("p");
+    initials.textContent = "Please enter your initials in the box below and submit your highscore!";
+    body.appendChild(initials);
 
     var textBox = document.createElement("input");
     textBox.setAttribute("type", "text");
     textBox.setAttribute("name", "initials");
-    enterInitials.appendChild(textBox);
+    body.appendChild(textBox);
 
     var submitHighScore = document.createElement("button");
     submitHighScore.textContent = "submit";
-    enterInitials.appendChild(submitHighScore);
-    }
-
+    body.appendChild(submitHighScore);
+    
     submitHighScore.addEventListener("click", function() {
-            if (enterInitials == "") {
-            return false;
-             alert ("Invalid response! Please enter your initials.");
-        }
-})
+            if (textBox.value == "") {
+                alert ("Invalid response! Please enter your initials in the box below.");
+            }
+    });
+}
 
