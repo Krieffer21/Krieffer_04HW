@@ -138,6 +138,7 @@ function askQuestion(q,a) {
         answer4 = document.createElement("button");
         body.appendChild(answer4);
 
+        // Styles the question and answer buttons. 
         question.setAttribute("style", "padding: 30px;");
         answer1.setAttribute("style", "margin: 10px; background-color: #9ad8d8; font-weight: bold;");
         answer2.setAttribute("style", "margin: 10px; background-color: #9ad8d8; font-weight: bold;");
@@ -252,12 +253,15 @@ function endGame() {
     // Styling the submit button.
     submitHighScore.setAttribute("style","margin: 10px; background-color: #fbfbbd;");
     
-    // 
+    // Do the following when the submit button is clicked. 
     submitHighScore.addEventListener("click", function() {
+            // If they do not enter anything into the text box it will alert them.
             if (textBox.value == "") {
                 alert ("Invalid response! Please enter your initials in the box below.");
             }
+            // Otherwise, show the high score page. 
             else {
+                // Store the score to the score list. 
                 scoreList.push({
                     initials:textBox.value, score:secondsLeft});
                 end.remove();
@@ -269,42 +273,50 @@ function endGame() {
             }
     });
 }
-
+// The following function shows the score page.
 function scorePage() {
 
+    // Creates the header to say high scores.
     var highHeader = document.createElement("header");
     highHeader.textContent = "High Scores!";
     body.appendChild(highHeader);
 
+    // Styling the header
     highHeader.setAttribute("style", "padding: 40px; font-size: 30px;");
 
-
+    // Creating the score list as an orderd list.
     var scores = document.createElement("ol");
     body.appendChild(scores);
 
+        // Styles the high scores that are or will be listed.
         scores.setAttribute("style", "width: 10%; text-align: center; margin-left: auto; margin-right: auto;"); 
 
+    // Shows what the user enters into the initials box and shows their final score in the score list.
     for (var i = 0; i < scoreList.length; i++) {  
         var list = document.createElement("li");
         list.textContent = scoreList[i].initials + " - " + scoreList[i].score;
         scores.appendChild(list);
     }
 
-            // clear scores 
+    // Creates the button to clear the high scores.
     var clearScores = document.createElement("button");
     clearScores.textContent = "Clear High Scores";
     body.appendChild(clearScores);
 
+    // Styles the clear scores button.
     clearScores.setAttribute("style", "margin: 10px; background-color: #e2e2e2;");
 
+    // Creates the go back button. 
     var goBack = document.createElement("button");
     goBack.textContent = "Go Back!";
     body.appendChild(goBack);
 
+    // Styles the go back button.
     goBack.setAttribute("style", "background-color: #ffbfbf;");
 
-// refreshes the page but doesn't delete the local storage. 
+    // Tells the go back button what to do.   
     goBack.addEventListener("click",function() {
+        // Goes back to the start page without refreashing the browser.
         highHeader.remove();
         scores.remove();
         clearScores.remove();
@@ -312,7 +324,9 @@ function scorePage() {
         letsGo();
     });
 
+    // Tells the clear scores button what to do. 
     clearScores.addEventListener("click", function(){   
+        // removes the scores and emptys the score list array.
         scores.remove();
         scoreList = [];
     });
