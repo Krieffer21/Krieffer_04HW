@@ -230,23 +230,29 @@ function endGame() {
     giveScore.textContent = "Your final score is " + secondsLeft + "!";
     body.appendChild(giveScore);
 
+    // Text that asks the user to enter their initials.
     var initials = document.createElement("p");
     initials.textContent = "Please enter your initials in the box below and submit your highscore!";
     body.appendChild(initials);
 
+    // Box when the user will type their initials.
     var textBox = document.createElement("input");
     textBox.setAttribute("type", "text");
     textBox.setAttribute("name", "initials");
     body.appendChild(textBox);
 
+    // Style's the input box.
     textBox.setAttribute("style","border-style: solid; border-color: blue;");
 
+    // Creating submit button.
     var submitHighScore = document.createElement("button");
     submitHighScore.textContent = "submit";
     body.appendChild(submitHighScore);
 
+    // Styling the submit button.
     submitHighScore.setAttribute("style","margin: 10px; background-color: #fbfbbd;");
     
+    // 
     submitHighScore.addEventListener("click", function() {
             if (textBox.value == "") {
                 alert ("Invalid response! Please enter your initials in the box below.");
