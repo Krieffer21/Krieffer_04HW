@@ -63,7 +63,7 @@ letsGo();
         body.appendChild(intro);
 
         // Styling the prompt. 
-        intro.setAttribute("style", "font-size: 20px;");
+        intro.setAttribute("style", "font-size: 20px; margin: 50px;");
 
         // Creating the start quiz start button.
         var start = document.createElement ("button");
