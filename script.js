@@ -1,12 +1,13 @@
-// 
+// defining some global variables.
 var timer = document.createElement("div");
 var body = document.querySelector("body");
 var scoreList = [];
-
+// Styling the body.
 body.setAttribute("style", "margin: 10px; background-color: #e1f1ff; text-align: center;");
 
+// The function below is for the starting page.
 letsGo();
-    // Defining the quiz questions, answers and correct answers.  
+    // Defining the quiz questions, answers and correct answers in an object.  
     var questionsAnswers = [
         { q: "Which of the following data types represents an object?", 
           a: ["var x = 21;","var x = \'Billy\'","var x = \'Billy Bob\'","var x = {name:Billy};"],
@@ -28,42 +29,50 @@ letsGo();
           a: ["A Lazy variable", "A Local variable", "A Useless variable", "A Global variable"],
           c: "A Global variable" }
     ];
+
+    // Calling the function.
     function letsGo() {
 
+        // Creating high score button, so when clicked takes you to the list of high scores.
         var highScore = document.createElement("button");
         highScore.textContent = "High Scores!";
         body.appendChild(highScore);
 
-            highScore.setAttribute("style", "float: right; background-color: #faffa5;");
+        // Styling the high score button.
+        highScore.setAttribute("style", "float: right; background-color: #faffa5;");
 
+        // Setting the timers text and appending it.
         timer.textContent = "Timer: 100"; 
         body.appendChild(timer); 
 
-            timer.setAttribute("style", "font-weight: bold; float: left;");
+        // Styling the timer
+        timer.setAttribute("style", "font-weight: bold; float: left;");
 
-        // Header for the starting page
+        // Header for the starting page.
         var header = document.createElement("header");
         header.textContent = "Coding Quiz!";
         body.appendChild(header);
 
-            header.setAttribute("style", "font-size: 30px; font-weight: bold; text-align: center; padding: 20px;");
+        // Styling the header.
+        header.setAttribute("style", "font-size: 30px; font-weight: bold; text-align: center; padding: 20px;");
         
-        // Starting prompt for quiz
+        // Starting prompt for the quiz.
         var intro = document.createElement("p");
         intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
         body.appendChild(intro);
 
-            intro.setAttribute("style", "font-size: 20px;");
+        // Styling the prompt. 
+        intro.setAttribute("style", "font-size: 20px;");
 
-        // Assigning start quiz text to the start button.
+        // Creating the start quiz start button.
         var start = document.createElement ("button");
         start.textContent = "Start Quiz";
-        // Inserting the button into the HTML file.
         body.appendChild(start);
 
+        // styling the button.
         start.setAttribute("style", "background-color: #9ce09c; font-weight:bold; font-size:20px; border: 1px ; border-style: solid; padding: 10px;");
 
-        // when clicked start quiz & timer
+        // When the start button is clicked, start quiz & timer.
         start.addEventListener("click", function() {
             // Display the first question and answer options.
             question = undefined;
@@ -77,6 +86,8 @@ letsGo();
             header.remove();
             highScore.remove();
         });
+
+        // When the high score button is clicked run the score page function and remove the starting operations.
         highScore.addEventListener("click", function(){
             start.remove();
             intro.remove();
@@ -208,6 +219,7 @@ function endGame() {
     end.textContent="All done!";
     body.appendChild(end);
 
+    // Styling the text All done.
     end.setAttribute("style", "padding: 40px; font-family: Arial, Helvetica, sans-serif;");
 
     // Shows the player their final score as the time they had left, if any. 
@@ -264,7 +276,7 @@ function scorePage() {
     var scores = document.createElement("ol");
     body.appendChild(scores);
 
-                                scores.setAttribute("list-style-position", "center;");
+        scores.setAttribute("style", "width: 10%; text-align: center; margin-left: auto; margin-right: auto;"); 
 
     for (var i = 0; i < scoreList.length; i++) {  
         var list = document.createElement("li");
