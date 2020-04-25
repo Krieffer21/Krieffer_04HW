@@ -1,6 +1,9 @@
+// 
 var timer = document.createElement("div");
 var body = document.querySelector("body");
 var scoreList = [];
+
+body.setAttribute("style", "margin: 10px; background-color: #e1f1ff; text-align: center;");
 
 letsGo();
     // Defining the quiz questions, answers and correct answers.  
@@ -31,24 +34,34 @@ letsGo();
         highScore.textContent = "High Scores!";
         body.appendChild(highScore);
 
+            highScore.setAttribute("style", "float: right; background-color: #faffa5;");
+
         timer.textContent = "Timer: 100"; 
-        body.appendChild(timer);
+        body.appendChild(timer); 
+
+            timer.setAttribute("style", "font-weight: bold; float: left;");
 
         // Header for the starting page
         var header = document.createElement("header");
         header.textContent = "Coding Quiz!";
         body.appendChild(header);
 
+            header.setAttribute("style", "font-size: 30px; font-weight: bold; text-align: center; padding: 20px;");
+        
         // Starting prompt for quiz
         var intro = document.createElement("p");
         intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
         body.appendChild(intro);
+
+            intro.setAttribute("style", "font-size: 20px;");
 
         // Assigning start quiz text to the start button.
         var start = document.createElement ("button");
         start.textContent = "Start Quiz";
         // Inserting the button into the HTML file.
         body.appendChild(start);
+
+        start.setAttribute("style", "background-color: #9ce09c; font-weight:bold; font-size:20px; border: 1px ; border-style: solid; padding: 10px;");
 
         // when clicked start quiz & timer
         start.addEventListener("click", function() {
@@ -113,6 +126,13 @@ function askQuestion(q,a) {
         body.appendChild(answer3);
         answer4 = document.createElement("button");
         body.appendChild(answer4);
+
+        question.setAttribute("style", "padding: 30px;");
+        answer1.setAttribute("style", "margin: 10px; background-color: #9ad8d8; font-weight: bold;");
+        answer2.setAttribute("style", "margin: 10px; background-color: #9ad8d8; font-weight: bold;");
+        answer3.setAttribute("style", "margin: 10px; background-color: #9ad8d8; font-weight: bold;");
+        answer4.setAttribute("style", "margin: 10px; background-color: #9ad8d8;font-weight: bold;");
+
 
         // When an answer button is clicked on check that it was the correct answer.
         answer1.addEventListener("click", function() {
@@ -188,12 +208,14 @@ function endGame() {
     end.textContent="All done!";
     body.appendChild(end);
 
+    end.setAttribute("style", "padding: 40px; font-family: Arial, Helvetica, sans-serif;");
+
     // Shows the player their final score as the time they had left, if any. 
     var giveScore = document.createElement("h1");
     if (secondsLeft < 0) {
         secondsLeft = 0;
     }
-    giveScore.textContent = "Your final score is " + secondsLeft;
+    giveScore.textContent = "Your final score is " + secondsLeft + "!";
     body.appendChild(giveScore);
 
     var initials = document.createElement("p");
@@ -205,9 +227,13 @@ function endGame() {
     textBox.setAttribute("name", "initials");
     body.appendChild(textBox);
 
+    textBox.setAttribute("style","border-style: solid; border-color: blue;");
+
     var submitHighScore = document.createElement("button");
     submitHighScore.textContent = "submit";
     body.appendChild(submitHighScore);
+
+    submitHighScore.setAttribute("style","margin: 10px; background-color: #fbfbbd;");
     
     submitHighScore.addEventListener("click", function() {
             if (textBox.value == "") {
@@ -232,23 +258,32 @@ function scorePage() {
     highHeader.textContent = "High Scores!";
     body.appendChild(highHeader);
 
+    highHeader.setAttribute("style", "padding: 40px; font-size: 30px;");
+
 
     var scores = document.createElement("ol");
     body.appendChild(scores);
+
+                                scores.setAttribute("list-style-position", "center;");
+
     for (var i = 0; i < scoreList.length; i++) {  
         var list = document.createElement("li");
         list.textContent = scoreList[i].initials + " - " + scoreList[i].score;
-        scores.appendChild(list);   
+        scores.appendChild(list);
     }
 
+            // clear scores 
     var clearScores = document.createElement("button");
     clearScores.textContent = "Clear High Scores";
     body.appendChild(clearScores);
-        // clear scores 
+
+    clearScores.setAttribute("style", "margin: 10px; background-color: #e2e2e2;");
 
     var goBack = document.createElement("button");
     goBack.textContent = "Go Back!";
     body.appendChild(goBack);
+
+    goBack.setAttribute("style", "background-color: #ffbfbf;");
 
 // refreshes the page but doesn't delete the local storage. 
     goBack.addEventListener("click",function() {
@@ -258,6 +293,9 @@ function scorePage() {
         goBack.remove();
         letsGo();
     });
+
+    clearScores.addEventListener("click", function(){   
+        scores.remove();
+        scoreList = [];
+    });
 }
-
-
