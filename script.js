@@ -2,6 +2,7 @@
 var timer = document.createElement("div");
 var body = document.querySelector("body");
 var scoreList = [];
+
 // Styling the body.
 body.setAttribute("style", "margin: 10px; background-color: #e1f1ff; text-align: center;");
 
@@ -58,7 +59,7 @@ letsGo();
         
         // Starting prompt for the quiz.
         var intro = document.createElement("p");
-        intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will gain a point, but for every incorrect answer you will lose a point.";
+        intro.textContent = "Please answer the following code related questions before time runs out! Remeber for every correct answer you will be prompted with the next question, but for every incorrect answer you will lose time on the timer.";
         body.appendChild(intro);
 
         // Styling the prompt. 
