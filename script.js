@@ -2,6 +2,7 @@
 var timer = document.createElement("div");
 var body = document.querySelector("body");
 var scoreList = [];
+var sc;
 
 // Styling the body.
 body.setAttribute("style", "margin: 10px; background-color: #e1f1ff; text-align: center;");
@@ -33,6 +34,7 @@ letsGo();
 
     // Calling the function.
     function letsGo() {
+        secondsLeft = 100;
 
         // Creating high score button, so when clicked takes you to the list of high scores.
         var highScore = document.createElement("button");
@@ -105,12 +107,14 @@ function updateTimer() {
     // When the timer reaches 0 end the game. 
     if (secondsLeft <= 0) {
         // call function endGame()
+        sc = 0;
+        clearInterval(timerInterval);
         endGame();
     }
 }
 
 // Defining the timer start time. 
-var secondsLeft = 100;
+var secondsLeft;
 var timerInterval;
 // Setting the starting time.
 function setTime() {
@@ -154,6 +158,7 @@ function askQuestion(q,a) {
                 // Check if the was the last question if so,
                 if (currentQ==4) {
                     // run endGame function.
+                    sc = secondsLeft;
                     endGame();
                 }
                 // If this wasn't the last question, go to the next question.
@@ -167,6 +172,8 @@ function askQuestion(q,a) {
         answer2.addEventListener("click", function() {
             if (answer2.textContent === questionsAnswers[currentQ].c ) {
                 if (currentQ==4) {
+                    sc = secondsLeft;
+                    clearInterval(timerInterval);
                     endGame();
                 }
                 else {
@@ -178,6 +185,8 @@ function askQuestion(q,a) {
         answer3.addEventListener("click", function() {
             if (answer3.textContent === questionsAnswers[currentQ].c ) {
                 if (currentQ==4) {
+                    sc = secondsLeft;
+                    clearInterval(timerInterval);
                     endGame();
                 }
                 else {
@@ -189,6 +198,8 @@ function askQuestion(q,a) {
         answer4.addEventListener("click", function() {
             if (answer4.textContent === questionsAnswers[currentQ].c ) {
                 if (currentQ==4) {
+                    sc = secondsLeft;
+                    clearInterval(timerInterval);
                     endGame();
                 }
                 else {
@@ -208,7 +219,6 @@ function askQuestion(q,a) {
 
 // The function endGame lets the user know the game is over and to submit their score.
 function endGame() { 
-    clearInterval(timerInterval);
 
     question.remove();
     answer1.remove();
@@ -226,10 +236,8 @@ function endGame() {
 
     // Shows the player their final score as the time they had left, if any. 
     var giveScore = document.createElement("h1");
-    if (secondsLeft < 0) {
-        secondsLeft = 0;
-    }
-    giveScore.textContent = "Your final score is " + secondsLeft + "!";
+   
+    giveScore.textContent = "Your final score is " + sc + "!";
     body.appendChild(giveScore);
 
     // Text that asks the user to enter their initials.
@@ -264,7 +272,7 @@ function endGame() {
             else {
                 // Store the score to the score list. 
                 scoreList.push({
-                    initials:textBox.value, score:secondsLeft});
+                    initials:textBox.value, score:sc});
                 end.remove();
                 giveScore.remove();
                 initials.remove();
