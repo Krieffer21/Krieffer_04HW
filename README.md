@@ -9,7 +9,7 @@
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/quiz.png)
 
 ### Start Quiz
-  When the start quiz button is clicked it starts the quiz. It ensures that the quiz questions are restarted from the first question. 
+  When the start quiz button is clicked it starts the quiz. It ensures that the quiz questions are started from the first question everytime. 
 
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/startQuiz.png)
 
@@ -19,7 +19,7 @@
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/timer.png) 
 
 ### Answer Options
-  For every answer option, if clicked on will check if it's the correct answer, if it was the correct answer it will go to the next question unless it is the last question, then it will end the quiz. If was the incorrect answer then it will deduct time from the timer every time it is clicked on, specifically 10 seconds.
+  For every answer option, if clicked on will check if it's the correct answer. If the correct answer was chosen, it will go to the next question unless, it is the last question, otherwise it will end the quiz. If the answer was incorrect, then it will deduct 10 seconds from the timer without moving to the next question.
 
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/answers.png)
 
