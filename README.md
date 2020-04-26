@@ -4,7 +4,7 @@
   This homework assignment was to create and style a timed code quiz with multiple-choice questions in javascript that is also mobile view friendly. When a question is answered incorrectly time is subtracted from the timer, if a question is answered correctly give the next question. The quiz also features a high scores page so after they finish the quiz or run out of time they can submit their high score. 
 
 ### Questions and Answers
- questionsAnswers in an array of objects where each object stores a quiz question, the multiple choice answers and the correct answer. It is part of the function letsGo.     
+ questionsAnswers is an array of objects where each object stores a quiz question, the multiple choice answers and the correct answer.
 
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/quiz.png)
 
