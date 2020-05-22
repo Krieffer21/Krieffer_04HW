@@ -24,6 +24,8 @@
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/answers.png)
 
 ### Quiz gif
+Deployed Link:  https://krieffer21.github.io/Krieffer_04HW/
+
   The gif below shows the functioning quiz. When the start quiz button is clicked you are prompted through the questions. For every wrong answer time is deducted, for every correct answer you are prompted the next question. When the quiz ends you are asked to submit your initials. When the submit button is clicked you are taken to the high scores page where you can choose to go back or clear the highscores. 
   
 ![](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/quiz.gif)
