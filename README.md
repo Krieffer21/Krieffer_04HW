@@ -1,4 +1,4 @@
-# Krieffer_04HW
+# Krieffer_CodeQuiz
 
 ## Code Quiz
   This homework assignment was to create and style a timed code quiz with multiple-choice questions in javascript that is also mobile view friendly. When a question is answered incorrectly time is subtracted from the timer, if a question is answered correctly give the next question. The quiz also features a high scores page so after they finish the quiz or run out of time they can submit their high score. 
@@ -24,7 +24,7 @@
 ![alt text](https://github.com/Krieffer21/Krieffer_04HW/blob/master/Assets/answers.png)
 
 ### Quiz gif
-Deployed Link:  https://krieffer21.github.io/Krieffer_04HW/
+Deployed Link:  https://krieffer21.github.io/Krieffer_CodeQuiz/
 
   The gif below shows the functioning quiz. When the start quiz button is clicked you are prompted through the questions. For every wrong answer time is deducted, for every correct answer you are prompted the next question. When the quiz ends you are asked to submit your initials. When the submit button is clicked you are taken to the high scores page where you can choose to go back or clear the highscores. 
   
